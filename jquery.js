@@ -1,25 +1,26 @@
 $(document).ready(function() {
-	console.log('working');
-	$(function() {
-		$('.btn-6')
-			.on('mouseenter', function(e) {
-				var parentOffset = $(this).offset(),
-					relX = e.pageX - parentOffset.left,
-					relY = e.pageY - parentOffset.top;
-				$(this)
-					.find('span')
-					.css({ top: relY, left: relX });
-			})
-			.on('mouseout', function(e) {
-				var parentOffset = $(this).offset(),
-					relX = e.pageX - parentOffset.left,
-					relY = e.pageY - parentOffset.top;
-				$(this)
-					.find('span')
-					.css({ top: relY, left: relX });
-			});
-		$('[href=#]').click(function() {
-			return false;
-		});
+	// Add smooth scrolling to all links
+	$('a').on('click', function(event) {
+		// Make sure this.hash has a value before overriding default behavior
+		if (this.hash !== '') {
+			// Prevent default anchor click behavior
+			event.preventDefault();
+
+			// Store hash
+			var hash = this.hash;
+
+			// Using jQuery's animate() method to add smooth page scroll
+			// The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+			$('html, body').animate(
+				{
+					scrollTop: $(hash).offset().top
+				},
+				800,
+				function() {
+					// Add hash (#) to URL when done scrolling (default click behavior)
+					window.location.hash = hash;
+				}
+			);
+		} // End if
 	});
 });
